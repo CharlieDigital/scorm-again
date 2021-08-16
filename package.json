@@ -1,7 +1,7 @@
 {
-  "name": "scorm-again",
+  "name": "scorm-again-noflow",
   "version": "1.6.0",
-  "description": "A modern SCORM JavaScript run-time library for AICC, SCORM 1.2, and SCORM 2004",
+  "description": "A modern SCORM JavaScript run-time library for AICC, SCORM 1.2, and SCORM 2004 (Flow typings removed)",
   "main": "dist/scorm-again.min.js",
   "directories": {
     "test": "test"
@@ -43,13 +43,13 @@
     "uglifyify": "^5.0.2"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha --require @babel/register --bdd --recursive --reporter list",
-    "compile": "./node_modules/.bin/grunt default",
-    "fix": "./node_modules/.bin/eslint ./src --fix"
+    "test": "mocha --require @babel/register --bdd --recursive --reporter list",
+    "compile": "grunt default",
+    "fix": "eslint ./src --fix"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jcputney/scorm-again.git"
+    "url": "git+https://github.com/CharlieDigital/scorm-again.git"
   },
   "keywords": [
     "scorm",
