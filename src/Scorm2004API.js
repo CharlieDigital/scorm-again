@@ -26,13 +26,13 @@ const scorm2004_regex = Regex.scorm2004;
  * API class for SCORM 2004
  */
 export default class Scorm2004API extends BaseAPI {
-  #version: '1.0';
+  #version = '1.0';
 
   /**
    * Constructor for SCORM 2004 API
    * @param {object} settings
    */
-  constructor(settings: {}) {
+  constructor(settings) {
     const finalSettings = {
       ...{
         mastery_override: false,
@@ -481,7 +481,7 @@ export default class Scorm2004API extends BaseAPI {
    * @param {boolean} terminateCommit
    * @return {object|Array}
    */
-  renderCommitCMI(terminateCommit: boolean) {
+  renderCommitCMI(terminateCommit) {
     const cmiExport = this.renderCMIToJSONObject();
 
     if (terminateCommit) {
@@ -512,7 +512,7 @@ export default class Scorm2004API extends BaseAPI {
    * @param {boolean} terminateCommit
    * @return {string}
    */
-  storeData(terminateCommit: boolean) {
+  storeData(terminateCommit) {
     if (terminateCommit) {
       if (this.cmi.mode === 'normal') {
         if (this.cmi.credit === 'credit') {

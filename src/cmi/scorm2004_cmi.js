@@ -62,9 +62,9 @@ function throwGeneralSetError() {
  * @return {boolean}
  */
 function check2004ValidFormat(
-    value: String,
-    regexPattern: String,
-    allowEmptyString?: boolean) {
+    value,
+    regexPattern,
+    allowEmptyString) {
   return checkValidFormat(
       value,
       regexPattern,
@@ -80,7 +80,7 @@ function check2004ValidFormat(
  * @param {string} rangePattern
  * @return {boolean}
  */
-function check2004ValidRange(value: any, rangePattern: String) {
+function check2004ValidRange(value: any, rangePattern) {
   return checkValidRange(
       value,
       rangePattern,
@@ -522,27 +522,27 @@ export class CMI extends BaseCMI {
    *    {
    *      comments_from_learner: CMICommentsFromLearner,
    *      comments_from_lms: CMICommentsFromLMS,
-   *      completion_status: string,
-   *      completion_threshold: string,
-   *      credit: string,
-   *      entry: string,
-   *      exit: string,
+   *      completion_status,
+   *      completion_threshold,
+   *      credit,
+   *      entry,
+   *      exit,
    *      interactions: CMIInteractions,
-   *      launch_data: string,
-   *      learner_id: string,
-   *      learner_name: string,
+   *      launch_data,
+   *      learner_id,
+   *      learner_name,
    *      learner_preference: CMILearnerPreference,
-   *      location: string,
-   *      max_time_allowed: string,
-   *      mode: string,
+   *      location,
+   *      max_time_allowed,
+   *      mode,
    *      objectives: CMIObjectives,
-   *      progress_measure: string,
-   *      scaled_passing_score: string,
+   *      progress_measure,
+   *      scaled_passing_score,
    *      score: Scorm2004CMIScore,
-   *      session_time: string,
-   *      success_status: string,
-   *      suspend_data: string,
-   *      time_limit_action: string
+   *      session_time,
+   *      success_status,
+   *      suspend_data,
+   *      time_limit_action
    *    }
    *  }
    */
@@ -693,10 +693,10 @@ class CMILearnerPreference extends BaseCMI {
    *
    * @return {
    *    {
-   *      audio_level: string,
-   *      language: string,
-   *      delivery_speed: string,
-   *      audio_captioning: string
+   *      audio_level,
+   *      language,
+   *      delivery_speed,
+   *      audio_captioning
    *    }
    *  }
    */
@@ -1036,16 +1036,16 @@ export class CMIInteractionsObject extends BaseCMI {
    *
    * @return {
    *    {
-   *      id: string,
-   *      type: string,
+   *      id,
+   *      type,
    *      objectives: CMIArray,
-   *      timestamp: string,
+   *      timestamp,
    *      correct_responses: CMIArray,
-   *      weighting: string,
-   *      learner_response: string,
-   *      result: string,
-   *      latency: string,
-   *      description: string
+   *      weighting,
+   *      learner_response,
+   *      result,
+   *      latency,
+   *      description
    *    }
    *  }
    */
@@ -1209,11 +1209,11 @@ export class CMIObjectivesObject extends BaseCMI {
    *
    * @return {
    *    {
-   *      id: string,
-   *      success_status: string,
-   *      completion_status: string,
-   *      progress_measure: string,
-   *      description: string,
+   *      id,
+   *      success_status,
+   *      completion_status,
+   *      progress_measure,
+   *      description,
    *      score: Scorm2004CMIScore
    *    }
    *  }
@@ -1279,10 +1279,10 @@ class Scorm2004CMIScore extends CMIScore {
    *
    * @return {
    *    {
-   *      scaled: string,
-   *      raw: string,
-   *      min: string,
-   *      max: string
+   *      scaled,
+   *      raw,
+   *      min,
+   *      max
    *    }
    *  }
    */
@@ -1391,9 +1391,9 @@ export class CMICommentsObject extends BaseCMI {
    * toJSON for cmi.comments_from_learner.n object
    * @return {
    *    {
-   *      comment: string,
-   *      location: string,
-   *      timestamp: string
+   *      comment,
+   *      location,
+   *      timestamp
    *    }
    *  }
    */
@@ -1444,7 +1444,7 @@ export class CMIInteractionsObjectivesObject extends BaseCMI {
    * toJSON for cmi.interactions.n.objectives.n
    * @return {
    *    {
-   *      id: string
+   *      id
    *    }
    *  }
    */
@@ -1493,7 +1493,7 @@ export class CMIInteractionsCorrectResponsesObject extends BaseCMI {
    * toJSON cmi.interactions.n.correct_responses.n object
    * @return {
    *    {
-   *      pattern: string
+   *      pattern
    *    }
    *  }
    */
@@ -1533,7 +1533,7 @@ export class ADL extends BaseCMI {
    * @return {
    *    {
    *      nav: {
-   *        request: string
+   *        request
    *      }
    *    }
    *  }
@@ -1594,7 +1594,7 @@ class ADLNav extends BaseCMI {
    *
    * @return {
    *    {
-   *      request: string
+   *      request
    *    }
    *  }
    */
@@ -1675,8 +1675,8 @@ class ADLNavRequestValid extends BaseCMI {
    *
    * @return {
    *    {
-   *      previous: string,
-   *      continue: string
+   *      previous,
+   *      continue
    *    }
    *  }
    */

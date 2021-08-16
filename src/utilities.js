@@ -17,7 +17,7 @@ const designations = [
  * @param {Number} totalSeconds
  * @return {string}
  */
-export function getSecondsAsHHMMSS(totalSeconds: Number) {
+export function getSecondsAsHHMMSS(totalSeconds) {
   // SCORM spec does not deal with negative durations, give zero back
   if (!totalSeconds || totalSeconds <= 0) {
     return '00:00:00';
@@ -50,7 +50,7 @@ export function getSecondsAsHHMMSS(totalSeconds: Number) {
  * @param {Number} seconds
  * @return {String}
  */
-export function getSecondsAsISODuration(seconds: Number) {
+export function getSecondsAsISODuration(seconds) {
   // SCORM spec does not deal with negative durations, give zero back
   if (!seconds || seconds <= 0) {
     return 'PT0S';
@@ -92,7 +92,7 @@ export function getSecondsAsISODuration(seconds: Number) {
  * @param {RegExp} timeRegex
  * @return {number}
  */
-export function getTimeAsSeconds(timeString: String, timeRegex: RegExp) {
+export function getTimeAsSeconds(timeString, timeRegex) {
   if (!timeString || typeof timeString !== 'string' ||
       !timeString.match(timeRegex)) {
     return 0;
@@ -111,7 +111,7 @@ export function getTimeAsSeconds(timeString: String, timeRegex: RegExp) {
  * @param {RegExp} durationRegex
  * @return {number}
  */
-export function getDurationAsSeconds(duration: String, durationRegex: RegExp) {
+export function getDurationAsSeconds(duration, durationRegex) {
   if (!duration || !duration.match(durationRegex)) {
     return 0;
   }
@@ -139,9 +139,9 @@ export function getDurationAsSeconds(duration: String, durationRegex: RegExp) {
  * @return {string}
  */
 export function addTwoDurations(
-    first: String,
-    second: String,
-    durationRegex: RegExp) {
+    first,
+    second,
+    durationRegex) {
   return getSecondsAsISODuration(
       getDurationAsSeconds(first, durationRegex) +
       getDurationAsSeconds(second, durationRegex),
@@ -157,9 +157,9 @@ export function addTwoDurations(
  * @return {string}
  */
 export function addHHMMSSTimeStrings(
-    first: String,
-    second: String,
-    timeRegex: RegExp) {
+    first,
+    second,
+    timeRegex) {
   return getSecondsAsHHMMSS(
       getTimeAsSeconds(first, timeRegex) +
       getTimeAsSeconds(
@@ -235,7 +235,7 @@ export function unflatten(data) {
  * @param {number} num
  * @return {number}
  */
-export function countDecimals(num: number) {
+export function countDecimals(num) {
   if (Math.floor(num) === num || String(num).indexOf('.') < 0) return 0;
   const parts = num.toString().split('.')[1];
   return parts.length || 0;

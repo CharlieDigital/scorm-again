@@ -16,7 +16,7 @@ export class ValidationError extends Error {
    * @param {string} errorMessage
    * @param {string} detailedMessage
    */
-  constructor(errorCode: number, errorMessage: String, detailedMessage: String) {
+  constructor(errorCode, errorMessage, detailedMessage) {
     super(errorMessage);
     this.#errorCode = errorCode;
     this.#errorMessage = errorMessage;
@@ -60,7 +60,7 @@ export class Scorm12ValidationError extends ValidationError {
    * Constructor to take in an error code
    * @param {number} errorCode
    */
-  constructor(errorCode: number) {
+  constructor(errorCode) {
     if ({}.hasOwnProperty.call(scorm12_errors, String(errorCode))) {
       super(errorCode, scorm12_errors[String(errorCode)].basicMessage, scorm12_errors[String(errorCode)].detailMessage);
     } else {
@@ -77,7 +77,7 @@ export class AICCValidationError extends ValidationError {
    * Constructor to take in an error code
    * @param {number} errorCode
    */
-  constructor(errorCode: number) {
+  constructor(errorCode) {
     if ({}.hasOwnProperty.call(aicc_errors, String(errorCode))) {
       super(errorCode, aicc_errors[String(errorCode)].basicMessage, aicc_errors[String(errorCode)].detailMessage);
     } else {
@@ -94,7 +94,7 @@ export class Scorm2004ValidationError extends ValidationError {
    * Constructor to take in an error code
    * @param {number} errorCode
    */
-  constructor(errorCode: number) {
+  constructor(errorCode) {
     if ({}.hasOwnProperty.call(scorm2004_errors, String(errorCode))) {
       super(errorCode, scorm2004_errors[String(errorCode)].basicMessage, scorm2004_errors[String(errorCode)].detailMessage);
     } else {

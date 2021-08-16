@@ -46,9 +46,9 @@ function throwInvalidValueError() {
  * @return {boolean}
  */
 export function check12ValidFormat(
-    value: String,
-    regexPattern: String,
-    allowEmptyString?: boolean) {
+    value,
+    regexPattern,
+    allowEmptyString) {
   return checkValidFormat(
       value,
       regexPattern,
@@ -66,9 +66,9 @@ export function check12ValidFormat(
  * @return {boolean}
  */
 export function check12ValidRange(
-    value: any,
-    rangePattern: String,
-    allowEmptyString?: boolean) {
+    value,
+    rangePattern,
+    allowEmptyString) {
   return checkValidRange(
       value,
       rangePattern,
@@ -96,7 +96,7 @@ export class CMI extends BaseCMI {
    * @param {(CMIStudentData|AICCCMIStudentData)} student_data
    * @param {boolean} initialized
    */
-  constructor(cmi_children, student_data, initialized: boolean) {
+  constructor(cmi_children, student_data, initialized) {
     super();
 
     if (initialized) this.initialize();
@@ -128,10 +128,10 @@ export class CMI extends BaseCMI {
    *
    * @return {
    *    {
-   *      suspend_data: string,
-   *      launch_data: string,
-   *      comments: string,
-   *      comments_from_lms: string,
+   *      suspend_data,
+   *      launch_data,
+   *      comments,
+   *      comments_from_lms,
    *      core: CMICore,
    *      objectives: CMIObjectives,
    *      student_data: CMIStudentData,
@@ -529,7 +529,7 @@ class CMICore extends BaseCMI {
    * @param {Number} start_time
    * @return {string}
    */
-  getCurrentTotalTime(start_time: Number) {
+  getCurrentTotalTime(start_time) {
     let sessionTime = this.#session_time;
     const startTime = start_time;
 
@@ -550,15 +550,15 @@ class CMICore extends BaseCMI {
    *
    * @return {
    *    {
-   *      student_name: string,
-   *      entry: string,
-   *      exit: string,
+   *      student_name,
+   *      entry,
+   *      exit,
    *      score: CMIScore,
-   *      student_id: string,
-   *      lesson_mode: string,
-   *      lesson_location: string,
-   *      lesson_status: string,
-   *      credit: string,
+   *      student_id,
+   *      lesson_mode,
+   *      lesson_location,
+   *      lesson_status,
+   *      credit,
    *      session_time: *
    *    }
    *  }
@@ -698,9 +698,9 @@ export class CMIStudentData extends BaseCMI {
    *
    * @return {
    *    {
-   *      max_time_allowed: string,
-   *      time_limit_action: string,
-   *      mastery_score: string
+   *      max_time_allowed,
+   *      time_limit_action,
+   *      mastery_score
    *    }
    *  }
    */
@@ -838,10 +838,10 @@ export class CMIStudentPreference extends BaseCMI {
    *
    * @return {
    *    {
-   *      audio: string,
-   *      language: string,
-   *      speed: string,
-   *      text: string
+   *      audio,
+   *      language,
+   *      speed,
+   *      text
    *    }
    *  }
    */
@@ -1049,13 +1049,13 @@ export class CMIInteractionsObject extends BaseCMI {
    *
    * @return {
    *    {
-   *      id: string,
-   *      time: string,
-   *      type: string,
-   *      weighting: string,
-   *      student_response: string,
-   *      result: string,
-   *      latency: string,
+   *      id,
+   *      time,
+   *      type,
+   *      weighting,
+   *      student_response,
+   *      result,
+   *      latency,
    *      objectives: CMIArray,
    *      correct_responses: CMIArray
    *    }
@@ -1144,8 +1144,8 @@ export class CMIObjectivesObject extends BaseCMI {
    * toJSON for cmi.objectives.n
    * @return {
    *    {
-   *      id: string,
-   *      status: string,
+   *      id,
+   *      status,
    *      score: CMIScore
    *    }
    *  }
@@ -1198,7 +1198,7 @@ export class CMIInteractionsObjectivesObject extends BaseCMI {
    * toJSON for cmi.interactions.n.objectives.n
    * @return {
    *    {
-   *      id: string
+   *      id
    *    }
    *  }
    */
@@ -1248,7 +1248,7 @@ export class CMIInteractionsCorrectResponsesObject extends BaseCMI {
    * toJSON for cmi.interactions.correct_responses.n
    * @return {
    *    {
-   *      pattern: string
+   *      pattern
    *    }
    *  }
    */
@@ -1297,7 +1297,7 @@ export class NAV extends BaseCMI {
    * toJSON for nav object
    * @return {
    *    {
-   *      event: string
+   *      event
    *    }
    *  }
    */

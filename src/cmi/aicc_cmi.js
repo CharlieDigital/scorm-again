@@ -24,9 +24,9 @@ function throwReadOnlyError() {
  * @return {boolean}
  */
 function checkAICCValidFormat(
-    value: String,
-    regexPattern: String,
-    allowEmptyString?: boolean) {
+    value,
+    regexPattern,
+    allowEmptyString) {
   return checkValidFormat(
       value,
       regexPattern,
@@ -44,7 +44,7 @@ export class CMI extends Scorm12CMI.CMI {
    * Constructor for AICC CMI object
    * @param {boolean} initialized
    */
-  constructor(initialized: boolean) {
+  constructor(initialized) {
     super(aicc_constants.cmi_children);
 
     if (initialized) this.initialize();
@@ -73,10 +73,10 @@ export class CMI extends Scorm12CMI.CMI {
    *
    * @return {
    *    {
-   *      suspend_data: string,
-   *      launch_data: string,
-   *      comments: string,
-   *      comments_from_lms: string,
+   *      suspend_data,
+   *      launch_data,
+   *      comments,
+   *      comments_from_lms,
    *      core: CMICore,
    *      objectives: CMIObjectives,
    *      student_data: CMIStudentData,
@@ -193,7 +193,7 @@ class AICCStudentPreferences extends Scorm12CMI.CMIStudentPreference {
    * Getter for #lesson_type
    * @return {string}
    */
-  get lesson_type(): string {
+  get lesson_type() {
     return this.#lesson_type;
   }
 
@@ -201,7 +201,7 @@ class AICCStudentPreferences extends Scorm12CMI.CMIStudentPreference {
    * Setter for #lesson_type
    * @param {string} lesson_type
    */
-  set lesson_type(lesson_type: string) {
+  set lesson_type(lesson_type) {
     if (checkAICCValidFormat(lesson_type, aicc_regex.CMIString256)) {
       this.#lesson_type = lesson_type;
     }
@@ -211,7 +211,7 @@ class AICCStudentPreferences extends Scorm12CMI.CMIStudentPreference {
    * Getter for #text_color
    * @return {string}
    */
-  get text_color(): string {
+  get text_color() {
     return this.#text_color;
   }
 
@@ -219,7 +219,7 @@ class AICCStudentPreferences extends Scorm12CMI.CMIStudentPreference {
    * Setter for #text_color
    * @param {string} text_color
    */
-  set text_color(text_color: string) {
+  set text_color(text_color) {
     if (checkAICCValidFormat(text_color, aicc_regex.CMIString256)) {
       this.#text_color = text_color;
     }
@@ -229,7 +229,7 @@ class AICCStudentPreferences extends Scorm12CMI.CMIStudentPreference {
    * Getter for #text_location
    * @return {string}
    */
-  get text_location(): string {
+  get text_location() {
     return this.#text_location;
   }
 
@@ -237,7 +237,7 @@ class AICCStudentPreferences extends Scorm12CMI.CMIStudentPreference {
    * Setter for #text_location
    * @param {string} text_location
    */
-  set text_location(text_location: string) {
+  set text_location(text_location) {
     if (checkAICCValidFormat(text_location, aicc_regex.CMIString256)) {
       this.#text_location = text_location;
     }
@@ -247,7 +247,7 @@ class AICCStudentPreferences extends Scorm12CMI.CMIStudentPreference {
    * Getter for #text_size
    * @return {string}
    */
-  get text_size(): string {
+  get text_size() {
     return this.#text_size;
   }
 
@@ -255,7 +255,7 @@ class AICCStudentPreferences extends Scorm12CMI.CMIStudentPreference {
    * Setter for #text_size
    * @param {string} text_size
    */
-  set text_size(text_size: string) {
+  set text_size(text_size) {
     if (checkAICCValidFormat(text_size, aicc_regex.CMIString256)) {
       this.#text_size = text_size;
     }
@@ -265,7 +265,7 @@ class AICCStudentPreferences extends Scorm12CMI.CMIStudentPreference {
    * Getter for #video
    * @return {string}
    */
-  get video(): string {
+  get video() {
     return this.#video;
   }
 
@@ -273,7 +273,7 @@ class AICCStudentPreferences extends Scorm12CMI.CMIStudentPreference {
    * Setter for #video
    * @param {string} video
    */
-  set video(video: string) {
+  set video(video) {
     if (checkAICCValidFormat(video, aicc_regex.CMIString256)) {
       this.#video = video;
     }
@@ -284,10 +284,10 @@ class AICCStudentPreferences extends Scorm12CMI.CMIStudentPreference {
    *
    * @return {
    *    {
-   *      audio: string,
-   *      language: string,
-   *      speed: string,
-   *      text: string
+   *      audio,
+   *      language,
+   *      speed,
+   *      text
    *    }
    *  }
    */
@@ -356,9 +356,9 @@ class AICCCMIStudentData extends Scorm12CMI.CMIStudentData {
    * toJSON for cmi.student_data object
    * @return {
    *    {
-   *      mastery_score: string,
-   *      max_time_allowed: string,
-   *      time_limit_action: string,
+   *      mastery_score,
+   *      max_time_allowed,
+   *      time_limit_action,
    *      tries: CMITries
    *    }
    *  }
@@ -661,19 +661,19 @@ export class CMIStudentDemographics extends BaseCMI {
    * toJSON for cmi.student_demographics object
    * @return {
    *      {
-   *        city: string,
-   *        class: string,
-   *        company: string,
-   *        country: string,
-   *        experience: string,
-   *        familiar_name: string,
-   *        instructor_name: string,
-   *        title: string,
-   *        native_language: string,
-   *        state: string,
-   *        street_address: string,
-   *        telephone: string,
-   *        years_experience: string
+   *        city,
+   *        class,
+   *        company,
+   *        country,
+   *        experience,
+   *        familiar_name,
+   *        instructor_name,
+   *        title,
+   *        native_language,
+   *        state,
+   *        street_address,
+   *        telephone,
+   *        years_experience
    *      }
    *    }
    */
@@ -841,12 +841,12 @@ export class CMIPathsObject extends BaseCMI {
    * toJSON for cmi.paths.n object
    * @return {
    *    {
-   *      location_id: string,
-   *      date: string,
-   *      time: string,
-   *      status: string,
-   *      why_left: string,
-   *      time_in_element: string
+   *      location_id,
+   *      date,
+   *      time,
+   *      status,
+   *      why_left,
+   *      time_in_element
    *    }
    *  }
    */
@@ -949,8 +949,8 @@ export class CMITriesObject extends BaseCMI {
    * toJSON for cmi.student_data.tries.n object
    * @return {
    *    {
-   *      status: string,
-   *      time: string,
+   *      status,
+   *      time,
    *      score: CMIScore
    *    }
    *  }
@@ -1032,8 +1032,8 @@ export class CMIAttemptRecordsObject extends BaseCMI {
    * toJSON for cmi.student_data.attempt_records.n object
    * @return {
    *    {
-   *      status: string,
-   *      time: string,
+   *      status,
+   *      time,
    *      score: CMIScore
    *    }
    *  }
@@ -1122,9 +1122,9 @@ export class CMIEvaluationCommentsObject extends BaseCMI {
    * toJSON for cmi.evaulation.comments.n object
    * @return {
    *    {
-   *      content: string,
-   *      location: string,
-   *      time: string
+   *      content,
+   *      location,
+   *      time
    *    }
    *  }
    */

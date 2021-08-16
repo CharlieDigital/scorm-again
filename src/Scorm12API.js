@@ -23,7 +23,7 @@ export default class Scorm12API extends BaseAPI {
    * Constructor for SCORM 1.2 API
    * @param {object} settings
    */
-  constructor(settings: {}) {
+  constructor(settings) {
     const finalSettings = {
       ...{
         mastery_override: false,
@@ -235,7 +235,7 @@ export default class Scorm12API extends BaseAPI {
    * @param {boolean} terminateCommit
    * @return {object|Array}
    */
-  renderCommitCMI(terminateCommit: boolean) {
+  renderCommitCMI(terminateCommit) {
     const cmiExport = this.renderCMIToJSONObject();
 
     if (terminateCommit) {
@@ -266,7 +266,7 @@ export default class Scorm12API extends BaseAPI {
    * @param {boolean} terminateCommit
    * @return {string}
    */
-  storeData(terminateCommit: boolean) {
+  storeData(terminateCommit) {
     if (terminateCommit) {
       const originalStatus = this.cmi.core.lesson_status;
       if (originalStatus === 'not attempted') {

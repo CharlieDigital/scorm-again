@@ -29,7 +29,7 @@ export default class BaseAPI {
     selfReportSessionTime: false,
     alwaysSendTotalTime: false,
     strict_errors: true,
-    responseHandler: function(xhr) {
+    responseHandler(xhr) {
       let result;
       if (typeof xhr !== 'undefined') {
         result = JSON.parse(xhr.responseText);
@@ -48,7 +48,7 @@ export default class BaseAPI {
     },
   };
   cmi;
-  startingData: {};
+  startingData;
 
   /**
    * Constructor for Base API class. Sets some shared API fields, as well as
@@ -80,9 +80,9 @@ export default class BaseAPI {
    * @return {string}
    */
   initialize(
-      callbackName: String,
-      initializeMessage?: String,
-      terminationMessage?: String) {
+      callbackName,
+      initializeMessage,
+      terminationMessage) {
     let returnValue = global_constants.SCORM_FALSE;
 
     if (this.isInitialized()) {
@@ -127,7 +127,7 @@ export default class BaseAPI {
    * Setter for #settings
    * @param {object} settings
    */
-  set settings(settings: Object) {
+  set settings(settings) {
     this.#settings = {...this.#settings, ...settings};
   }
 
@@ -138,8 +138,8 @@ export default class BaseAPI {
    * @return {string}
    */
   terminate(
-      callbackName: String,
-      checkTerminated: boolean) {
+      callbackName,
+      checkTerminated) {
     let returnValue = global_constants.SCORM_FALSE;
 
     if (this.checkState(checkTerminated,
@@ -177,9 +177,9 @@ export default class BaseAPI {
    * @return {string}
    */
   getValue(
-      callbackName: String,
-      checkTerminated: boolean,
-      CMIElement: String) {
+      callbackName,
+      checkTerminated,
+      CMIElement) {
     let returnValue;
 
     if (this.checkState(checkTerminated,
@@ -222,9 +222,9 @@ export default class BaseAPI {
    * @return {string}
    */
   setValue(
-      callbackName: String,
-      commitCallback: String,
-      checkTerminated: boolean,
+      callbackName,
+      commitCallback,
+      checkTerminated,
       CMIElement,
       value) {
     if (value !== undefined) {
@@ -280,8 +280,8 @@ export default class BaseAPI {
    * @return {string}
    */
   commit(
-      callbackName: String,
-      checkTerminated: boolean) {
+      callbackName,
+      checkTerminated) {
     this.clearScheduledCommit();
 
     let returnValue = global_constants.SCORM_FALSE;
@@ -316,7 +316,7 @@ export default class BaseAPI {
    * @param {string} callbackName
    * @return {string}
    */
-  getLastError(callbackName: String) {
+  getLastError(callbackName) {
     const returnValue = String(this.lastErrorCode);
 
     this.processListeners(callbackName);
@@ -334,7 +334,7 @@ export default class BaseAPI {
    * @param {(string|number)} CMIErrorCode
    * @return {string}
    */
-  getErrorString(callbackName: String, CMIErrorCode) {
+  getErrorString(callbackName, CMIErrorCode) {
     let returnValue = '';
 
     if (CMIErrorCode !== null && CMIErrorCode !== '') {
@@ -355,7 +355,7 @@ export default class BaseAPI {
    * @param {(string|number)} CMIErrorCode
    * @return {string}
    */
-  getDiagnostic(callbackName: String, CMIErrorCode) {
+  getDiagnostic(callbackName, CMIErrorCode) {
     let returnValue = '';
 
     if (CMIErrorCode !== null && CMIErrorCode !== '') {
@@ -378,9 +378,9 @@ export default class BaseAPI {
    * @return {boolean}
    */
   checkState(
-      checkTerminated: boolean,
-      beforeInitError: number,
-      afterTermError?: number) {
+      checkTerminated,
+      beforeInitError,
+      afterTermError) {
     if (this.isNotInitialized()) {
       this.throwSCORMError(beforeInitError);
       return false;
@@ -401,10 +401,10 @@ export default class BaseAPI {
    * @param {number}messageLevel
    */
   apiLog(
-      functionName: String,
-      CMIElement: String,
-      logMessage: String,
-      messageLevel: number) {
+      functionName,
+      CMIElement,
+      logMessage,
+      messageLevel) {
     logMessage = this.formatMessage(functionName, CMIElement, logMessage);
 
     if (messageLevel >= this.apiLogLevel) {
@@ -437,7 +437,7 @@ export default class BaseAPI {
    * @param {string} message
    * @return {string}
    */
-  formatMessage(functionName: String, CMIElement: String, message: String) {
+  formatMessage(functionName, CMIElement, message) {
     const baseLength = 20;
     let messageString = '';
 
@@ -477,7 +477,7 @@ export default class BaseAPI {
    * @param {string} tester String to check for
    * @return {boolean}
    */
-  stringMatches(str: String, tester: String) {
+  stringMatches(str, tester) {
     return str && tester && str.match(tester);
   }
 
@@ -488,7 +488,7 @@ export default class BaseAPI {
    * @return {boolean}
    * @private
    */
-  _checkObjectHasProperty(refObject, attribute: String) {
+  _checkObjectHasProperty(refObject, attribute) {
     return Object.hasOwnProperty.call(refObject, attribute) ||
         Object.getOwnPropertyDescriptor(
             Object.getPrototypeOf(refObject), attribute) ||
@@ -544,7 +544,7 @@ export default class BaseAPI {
    * @return {string}
    */
   _commonSetCMIValue(
-      methodName: String, scorm2004: boolean, CMIElement, value) {
+      methodName, scorm2004, CMIElement, value) {
     if (!CMIElement || CMIElement === '') {
       return global_constants.SCORM_FALSE;
     }
@@ -659,7 +659,7 @@ export default class BaseAPI {
    * @param {string} CMIElement
    * @return {*}
    */
-  _commonGetCMIValue(methodName: String, scorm2004: boolean, CMIElement) {
+  _commonGetCMIValue(methodName, scorm2004, CMIElement) {
     if (!CMIElement || CMIElement === '') {
       return '';
     }
@@ -769,7 +769,7 @@ export default class BaseAPI {
    * @param {string} listenerName
    * @param {function} callback
    */
-  on(listenerName: String, callback: function) {
+  on(listenerName, callback) {
     if (!callback) return;
 
     const listenerFunctions = listenerName.split(' ');
@@ -785,7 +785,7 @@ export default class BaseAPI {
       }
 
       this.listenerArray.push({
-        functionName: functionName,
+        functionNameName,
         CMIElement: CMIElement,
         callback: callback,
       });
@@ -800,7 +800,7 @@ export default class BaseAPI {
    * @param {string} listenerName
    * @param {function} callback
    */
-  off(listenerName: String, callback: function) {
+  off(listenerName, callback) {
     if (!callback) return;
 
     const listenerFunctions = listenerName.split(' ');
@@ -832,7 +832,7 @@ export default class BaseAPI {
    *
    * @param {string} listenerName
    */
-  clear(listenerName: String) {
+  clear(listenerName) {
     const listenerFunctions = listenerName.split(' ');
     for (let i = 0; i < listenerFunctions.length; i++) {
       const listenerSplit = listenerFunctions[i].split('.');
@@ -859,7 +859,7 @@ export default class BaseAPI {
    * @param {string} CMIElement
    * @param {*} value
    */
-  processListeners(functionName: String, CMIElement: String, value: any) {
+  processListeners(functionName, CMIElement, value) {
     this.apiLog(functionName, CMIElement, value);
     for (let i = 0; i < this.listenerArray.length; i++) {
       const listener = this.listenerArray[i];
@@ -887,7 +887,7 @@ export default class BaseAPI {
    * @param {number} errorNumber
    * @param {string} message
    */
-  throwSCORMError(errorNumber: number, message: String) {
+  throwSCORMError(errorNumber, message) {
     if (!message) {
       message = this.getLmsErrorMessageDetails(errorNumber);
     }
@@ -903,7 +903,7 @@ export default class BaseAPI {
    *
    * @param {string} success
    */
-  clearSCORMError(success: String) {
+  clearSCORMError(success) {
     if (success !== undefined && success !== global_constants.SCORM_FALSE) {
       this.lastErrorCode = 0;
     }
@@ -1081,7 +1081,7 @@ export default class BaseAPI {
    * @param {boolean} immediate
    * @return {object}
    */
-  processHttpRequest(url: String, params, immediate = false) {
+  processHttpRequest(url, params, immediate = false) {
     const api = this;
     const process = function(url, params, settings, error_codes) {
       const genericError = {
@@ -1197,7 +1197,7 @@ export default class BaseAPI {
    * @param {number} when - the number of milliseconds to wait before committing
    * @param {string} callback - the name of the commit event callback
    */
-  scheduleCommit(when: number, callback: string) {
+  scheduleCommit(when, callback) {
     this.#timeout = new ScheduledCommit(this, when, callback);
     this.apiLog('scheduleCommit', '', 'scheduled',
         global_constants.LOG_LEVEL_DEBUG);
@@ -1231,7 +1231,7 @@ class ScheduledCommit {
    * @param {number} when
    * @param {string} callback
    */
-  constructor(API: any, when: number, callback: string) {
+  constructor(API, when, callback) {
     this.#API = API;
     this.#timeout = setTimeout(this.wrapper.bind(this), when);
     this.#callback = callback;

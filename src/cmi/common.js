@@ -18,11 +18,11 @@ const scorm12_error_codes = ErrorCodes.scorm12;
  * @return {boolean}
  */
 export function checkValidFormat(
-    value: String,
-    regexPattern: String,
-    errorCode: number,
-    errorClass: function,
-    allowEmptyString?: boolean) {
+    value,
+    regexPattern,
+    errorCode,
+    errorClass,
+    allowEmptyString) {
   const formatRegex = new RegExp(regexPattern);
   const matches = value.match(formatRegex);
   if (allowEmptyString && value === '') {
@@ -44,10 +44,10 @@ export function checkValidFormat(
  * @return {boolean}
  */
 export function checkValidRange(
-    value: any,
-    rangePattern: String,
-    errorCode: number,
-    errorClass: function) {
+    value,
+    rangePattern,
+    errorCode,
+    errorClass) {
   const ranges = rangePattern.split('#');
   value = value * 1.0;
   if (value >= ranges[0]) {
@@ -244,7 +244,7 @@ export class CMIScore extends BaseCMI {
 
   /**
    * toJSON for *.score
-   * @return {{min: string, max: string, raw: string}}
+   * @return {{min, max, raw}}
    */
   toJSON() {
     this.jsonString = true;
